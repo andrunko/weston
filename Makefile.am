@@ -171,8 +171,12 @@ nodist_libweston_@LIBWESTON_MAJOR@_la_SOURCES =				\
 	protocol/text-cursor-position-server-protocol.h	\
 	protocol/text-input-unstable-v1-protocol.c			\
 	protocol/text-input-unstable-v1-server-protocol.h		\
+	protocol/text-input-unstable-v3-protocol.c			\
+	protocol/text-input-unstable-v3-server-protocol.h		\
 	protocol/input-method-unstable-v1-protocol.c			\
 	protocol/input-method-unstable-v1-server-protocol.h		\
+	protocol/input-method-unstable-v2-protocol.c			\
+	protocol/input-method-unstable-v2-server-protocol.h		\
 	protocol/presentation-time-protocol.c		\
 	protocol/presentation-time-server-protocol.h	\
 	protocol/viewporter-protocol.c			\
@@ -185,6 +189,10 @@ nodist_libweston_@LIBWESTON_MAJOR@_la_SOURCES =				\
 	protocol/pointer-constraints-unstable-v1-server-protocol.h      \
 	protocol/input-timestamps-unstable-v1-protocol.c		\
 	protocol/input-timestamps-unstable-v1-server-protocol.h		\
+	protocol/virtual-keyboard-unstable-v1-protocol.c		\
+	protocol/virtual-keyboard-unstable-v1-server-protocol.h		\
+	protocol/weston-input-panel-protocol.c				\
+	protocol/weston-input-panel-server-protocol.h			\
 	protocol/weston-touch-calibration-protocol.c			\
 	protocol/weston-touch-calibration-server-protocol.h		\
 	protocol/linux-explicit-synchronization-unstable-v1-protocol.c	\
@@ -879,8 +887,12 @@ weston_keyboard_SOURCES = clients/keyboard.c
 nodist_weston_keyboard_SOURCES =				\
 	protocol/weston-desktop-shell-client-protocol.h		\
 	protocol/weston-desktop-shell-protocol.c		\
-	protocol/input-method-unstable-v1-protocol.c		\
-	protocol/input-method-unstable-v1-client-protocol.h
+	protocol/input-method-unstable-v2-protocol.c		\
+	protocol/input-method-unstable-v2-client-protocol.h	\
+	protocol/virtual-keyboard-unstable-v1-protocol.c	\
+	protocol/virtual-keyboard-unstable-v1-client-protocol.h	\
+	protocol/weston-input-panel-protocol.c		\
+	protocol/weston-input-panel-client-protocol.h
 weston_keyboard_LDADD = libtoytoolkit.la
 weston_keyboard_CFLAGS = $(AM_CFLAGS) $(CLIENT_CFLAGS)
 
@@ -957,10 +969,18 @@ BUILT_SOURCES +=					\
 	protocol/text-cursor-position-protocol.c	\
 	protocol/text-input-unstable-v1-protocol.c			\
 	protocol/text-input-unstable-v1-client-protocol.h		\
+	protocol/text-input-unstable-v3-protocol.c			\
+	protocol/text-input-unstable-v3-client-protocol.h		\
 	protocol/input-method-unstable-v1-protocol.c			\
 	protocol/input-method-unstable-v1-client-protocol.h		\
+	protocol/input-method-unstable-v2-protocol.c			\
+	protocol/input-method-unstable-v2-client-protocol.h		\
+	protocol/virtual-keyboard-unstable-v1-protocol.c	\
+	protocol/virtual-keyboard-unstable-v1-client-protocol.h	\
 	protocol/weston-desktop-shell-client-protocol.h			\
 	protocol/weston-desktop-shell-protocol.c			\
+	protocol/weston-input-panel-client-protocol.h			\
+	protocol/weston-input-panel-protocol.c				\
 	protocol/viewporter-client-protocol.h		\
 	protocol/viewporter-protocol.c			\
 	protocol/presentation-time-protocol.c				\
@@ -1481,8 +1501,10 @@ devices_weston_LDADD = libtest-client.la
 
 text_weston_SOURCES = tests/text-test.c
 nodist_text_weston_SOURCES =			\
-	protocol/text-input-unstable-v1-protocol.c		\
-	protocol/text-input-unstable-v1-client-protocol.h
+	protocol/text-input-unstable-v3-protocol.c		\
+	protocol/text-input-unstable-v3-client-protocol.h	\
+	protocol/input-method-unstable-v2-protocol.c		\
+	protocol/input-method-unstable-v2-server-protocol.h
 text_weston_CFLAGS = $(AM_CFLAGS) $(TEST_CLIENT_CFLAGS)
 text_weston_LDADD = libtest-client.la
 
@@ -1628,9 +1650,7 @@ EXTRA_DIST +=							\
 BUILT_SOURCES +=				\
 	protocol/weston-test-protocol.c	\
 	protocol/weston-test-server-protocol.h	\
-	protocol/weston-test-client-protocol.h	\
-	protocol/text-input-unstable-v1-protocol.c		\
-	protocol/text-input-unstable-v1-client-protocol.h
+	protocol/weston-test-client-protocol.h
 
 EXTRA_DIST +=					\
 	protocol/weston-desktop-shell.xml	\
